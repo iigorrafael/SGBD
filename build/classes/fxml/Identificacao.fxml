@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:id="border" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="300.0" minWidth="300.0" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sgpb.controllers.IdentificacaoController">
+   <top>
+      <MenuBar fx:id="menuBar" BorderPane.alignment="CENTER">
+         <menus>
+            <Menu fx:id="MenuBiometria" text="Funções">
+               <items>
+                  <MenuItem fx:id="ItemCadastrar" mnemonicParsing="false" onAction="#cadastrar" text="Cadastrar" />
+                  <MenuItem fx:id="itemAlterar" mnemonicParsing="false" onAction="#identificacao" text="Alterar" />
+                  <MenuItem fx:id="itemAutenticar" mnemonicParsing="false" onAction="#identificacao" text="Identificar" />
+                  <MenuItem fx:id="itemTeste" mnemonicParsing="false" onAction="#teste" text="Teste" />
+               </items>
+            </Menu>
+            <Menu fx:id="menuBanco" text="Dados">
+               <items>
+                  <MenuItem fx:id="itemEventos" mnemonicParsing="false" onAction="#eventos" text="Eventos" />
+                  <MenuItem fx:id="itemAlunos" mnemonicParsing="false" onAction="#alunos" text="Alunos" />
+                  <MenuItem fx:id="itemServidores" mnemonicParsing="false" onAction="#servidores" text="Servidores" />
+               </items>
+            </Menu>
+            <Menu fx:id="menuOpcoes" text="Opções">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="About" />
+               </items>
+            </Menu>
+            <Menu fx:id="menuSair" text="Sair">
+               <items>
+                  <MenuItem fx:id="itemLogout" mnemonicParsing="false" onAction="#logout" text="Logout" />
+                  <MenuItem fx:id="itemFechar" mnemonicParsing="false" onAction="#fecharApp" text="Fechar" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+   </top>
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <JFXButton fx:id="btnShowPresentes" layoutX="719.0" layoutY="504.0" onAction="#showPresentes" style="-fx-background-color: #4285f4;" text="Visualizar presentes" textFill="WHITE">
+               <font>
+                  <Font name="Arial" size="14.0" />
+               </font></JFXButton>
+            <Label fx:id="labelNome" alignment="CENTER" layoutY="399.0" prefHeight="36.0" prefWidth="900.0" textAlignment="CENTER">
+               <font>
+                  <Font name="Arial" size="24.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="imageView" fitHeight="250.0" fitWidth="150.0" layoutX="375.0" layoutY="143.0" pickOnBounds="true" preserveRatio="true" />
+            <JFXButton fx:id="btnCancelar" cancelButton="true" layoutX="406.0" layoutY="504.0" onAction="#cancelar" prefHeight="26.0" prefWidth="88.0" style="-fx-background-color: #4285f4;" text="Cancelar" textFill="WHITE">
+               <font>
+                  <Font name="Arial" size="14.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="btnIdentificar" defaultButton="true" layoutX="406.0" layoutY="448.0" onAction="#identificar" prefHeight="26.0" prefWidth="88.0" ripplerFill="WHITE" style="-fx-background-color: dd5347;" text="Identificar" textFill="WHITE">
+               <font>
+                  <Font name="Arial" size="14.0" />
+               </font>
+            </JFXButton>
+            <Label fx:id="labelInstrucoes" prefHeight="36.0" prefWidth="900.0" text="Instruções" textAlignment="CENTER" textFill="RED">
+               <font>
+                  <Font name="Arial" size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelEvento" alignment="CENTER" layoutY="85.0" prefHeight="36.0" prefWidth="900.0" style=": ;" textAlignment="CENTER">
+               <font>
+                  <Font name="Arial" size="24.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="btnSelectEvento" layoutX="32.0" layoutY="504.0" onAction="#eventos" prefHeight="26.0" prefWidth="146.0" style="-fx-background-color: #4285f4;" text="Selecionar Evento" textFill="WHITE">
+               <font>
+                  <Font name="Arial" size="14.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

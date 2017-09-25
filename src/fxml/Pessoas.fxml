@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:id="border" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="300.0" minWidth="300.0" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sgpb.controllers.PessoasController">
+   <top>
+      <MenuBar fx:id="menuBar" BorderPane.alignment="CENTER">
+         <menus>
+            <Menu fx:id="MenuBiometria" text="Funções">
+               <items>
+                  <MenuItem fx:id="ItemCadastrar" mnemonicParsing="false" onAction="#cadastrar" text="Cadastrar" />
+                  <MenuItem fx:id="itemAlterar" mnemonicParsing="false" onAction="#identificacao" text="Alterar" />
+                  <MenuItem fx:id="itemAutenticar" mnemonicParsing="false" onAction="#identificacao" text="Identificar" />
+                  <MenuItem fx:id="itemTeste" mnemonicParsing="false" onAction="#teste" text="Teste" />
+               </items>
+            </Menu>
+            <Menu fx:id="menuBanco" text="Dados">
+               <items>
+                  <MenuItem fx:id="itemEventos" mnemonicParsing="false" onAction="#eventos" text="Eventos" />
+                  <MenuItem fx:id="itemAlunos" mnemonicParsing="false" onAction="#alunos" text="Alunos" />
+                  <MenuItem fx:id="itemServidores" mnemonicParsing="false" onAction="#servidores" text="Servidores" />
+               </items>
+            </Menu>
+            <Menu fx:id="menuOpcoes" text="Opções">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="About" />
+               </items>
+            </Menu>
+            <Menu fx:id="menuSair" text="Sair">
+               <items>
+                  <MenuItem fx:id="itemLogout" mnemonicParsing="false" onAction="#logout" text="Logout" />
+                  <MenuItem fx:id="itemFechar" mnemonicParsing="false" onAction="#fecharApp" text="Fechar" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+   </top>
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <TableView fx:id="tableView" layoutY="29.0" onMouseReleased="#itemSelecionado" prefHeight="546.0" prefWidth="900.0">
+               <columns>
+                  <TableColumn fx:id="idView" prefWidth="78.33334350585938" text="ID" />
+                  <TableColumn fx:id="pessoaView" prefWidth="820.0" text="NOME" />
+               </columns>
+            </TableView>
+            <TextField fx:id="searchPessoa" layoutX="80.0" layoutY="2.0" onKeyReleased="#pesquisaPessoa" prefHeight="25.0" prefWidth="813.0" />
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

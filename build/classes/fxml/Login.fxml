@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.effect.*?>
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="anchorpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sgpb.controllers.LoginController">
+   <children>
+      <ImageView fitHeight="630.0" fitWidth="794.0" layoutX="-22.0" layoutY="-16.0">
+         <image>
+            <Image url="@../sgpb/imagem/fundo.png" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="178.0" layoutY="106.0" prefHeight="390.0" prefWidth="395.0" style="-fx-background-color: #FFFFFF;">
+         <children>
+            <JFXTextField fx:id="login" cache="true" labelFloat="true" layoutX="63.0" layoutY="130.0" prefHeight="25.0" prefWidth="270.0" promptText="Login" unFocusColor="#9a9999">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </JFXTextField>
+            <JFXButton fx:id="entrar" buttonType="RAISED" defaultButton="true" layoutX="216.0" layoutY="280.0" onAction="#makeLogin" prefHeight="25.0" prefWidth="117.0" ripplerFill="#4285f4" style="-fx-background-color: #4285f4;" text="Entrar" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font></JFXButton>
+            <JFXPasswordField fx:id="senha" labelFloat="true" layoutX="63.0" layoutY="195.0" prefHeight="25.0" prefWidth="270.0" promptText="Senha">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </JFXPasswordField>
+            <JFXButton fx:id="cadastrar" buttonType="RAISED" layoutX="63.0" layoutY="280.0" prefHeight="25.0" prefWidth="117.0" ripplerFill="#4285f4" style="-fx-background-color: #4285f4;" text="Cadastre-se" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font></JFXButton>
+         </children>
+         <effect>
+            <DropShadow blurType="GAUSSIAN" />
+         </effect>
+      </AnchorPane>
+   </children>
+</AnchorPane>

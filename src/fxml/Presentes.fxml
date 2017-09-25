@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:id="border" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="300.0" minWidth="300.0" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sgpb.controllers.PresentesController">
+   <top>
+      <MenuBar fx:id="menuBar" BorderPane.alignment="CENTER">
+         <menus>
+            <Menu fx:id="MenuBiometria" text="Funções">
+               <items>
+                  <MenuItem fx:id="ItemCadastrar" mnemonicParsing="false" onAction="#cadastrar" text="Cadastrar" />
+                  <MenuItem fx:id="itemAlterar" mnemonicParsing="false" onAction="#identificacao" text="Alterar" />
+                  <MenuItem fx:id="itemAutenticar" mnemonicParsing="false" onAction="#identificacao" text="Identificar" />
+               </items>
+            </Menu>
+            <Menu fx:id="menuBanco" text="Dados">
+               <items>
+                  <MenuItem fx:id="itemEventos" mnemonicParsing="false" onAction="#eventos" text="Eventos" />
+                  <MenuItem fx:id="itemAlunos" mnemonicParsing="false" onAction="#alunos" text="Pessoas" />
+               </items>
+            </Menu>
+            <Menu fx:id="menuOpcoes" text="Opções">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="About" />
+               </items>
+            </Menu>
+            <Menu fx:id="menuSair" text="Sair">
+               <items>
+                  <MenuItem fx:id="itemLogout" mnemonicParsing="false" onAction="#logout" text="Logout" />
+                  <MenuItem fx:id="itemFechar" mnemonicParsing="false" onAction="#fecharApp" text="Fechar" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+   </top>
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <StackPane fx:id="stackpane" layoutY="28.0" prefHeight="547.0" prefWidth="900.0">
+               <children>
+                  <TableView fx:id="tableView" prefHeight="547.0" prefWidth="835.0">
+                     <columns>
+                        <TableColumn fx:id="idView" minWidth="0.0" prefWidth="0.0" resizable="false" text="ID" visible="false" />
+                        <TableColumn fx:id="dataView" prefWidth="199.0" resizable="false" text="DATA" />
+                        <TableColumn fx:id="pessoaView" prefWidth="374.0" resizable="false" text="PESSOA" />
+                        <TableColumn fx:id="atividadeView" prefWidth="326.0" resizable="false" text="ATIVIDADE" />
+                     </columns>
+                  </TableView>
+               </children>
+            </StackPane>
+            <TextField fx:id="searchAtividade" layoutX="573.0" layoutY="2.0" onKeyReleased="#pesquisaAtividade" prefHeight="25.0" prefWidth="327.0" />
+            <TextField fx:id="searchPessoa" layoutX="199.0" layoutY="2.0" onKeyReleased="#pesquisaPessoa" prefHeight="25.0" prefWidth="374.0" />
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

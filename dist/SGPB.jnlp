@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="SGPB.jnlp">
+  <information>
+    <title>SGPB</title>
+    <vendor>CEDI</vendor>
+    <description>null</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="SGPB.jar" size="2095986" download="eager" />
+    <jar href="lib\antlr-2.7.6.jar" size="443432" download="eager" />
+    <jar href="lib\antlr-2.7.7.jar" size="437548" download="eager" />
+    <jar href="lib\c3p0-0.9.1.jar" size="608376" download="eager" />
+    <jar href="lib\c3p0-0.9.2.1.jar" size="422423" download="eager" />
+    <jar href="lib\cglib-2.2.jar" size="278682" download="eager" />
+    <jar href="lib\commons-collections-3.1.jar" size="559366" download="eager" />
+    <jar href="lib\controlsfx-8.40.12.jar" size="996389" download="eager" />
+    <jar href="lib\dom4j-1.6.1.jar" size="309995" download="eager" />
+    <jar href="lib\ehcache-1.5.0.jar" size="264400" download="eager" />
+    <jar href="lib\ehcache-core-2.4.3.jar" size="1007109" download="eager" />
+    <jar href="lib\ftrSDKHelper.jar" size="23600" download="eager" />
+    <jar href="lib\hibernate-c3p0-4.3.1.Final.jar" size="39138" download="eager" />
+    <jar href="lib\hibernate-commons-annotations-4.0.4.Final.jar" size="75740" download="eager" />
+    <jar href="lib\hibernate-core-4.3.1.Final.jar" size="5188532" download="eager" />
+    <jar href="lib\hibernate-ehcache-4.3.1.Final.jar" size="134457" download="eager" />
+    <jar href="lib\hibernate-entitymanager-4.3.1.Final.jar" size="643750" download="eager" />
+    <jar href="lib\hibernate-jpa-2.1-api-1.0.0.Final.jar" size="115983" download="eager" />
+    <jar href="lib\infinispan-core-4.0.0.FINAL.jar" size="966498" download="eager" />
+    <jar href="lib\jandex-1.1.0.Final.jar" size="76551" download="eager" />
+    <jar href="lib\javassist-3.18.1-GA.jar" size="702810" download="eager" />
+    <jar href="lib\javassist-3.9.0.GA.jar" size="597476" download="eager" />
+    <jar href="lib\jboss-logging-3.1.3.GA.jar" size="57523" download="eager" />
+    <jar href="lib\jboss-transaction-api_1.2_spec-1.0.0.Final.jar" size="28135" download="eager" />
+    <jar href="lib\jbosscache-core-3.2.1.GA.jar" size="1168922" download="eager" />
+    <jar href="lib\jfoenix.jar" size="2363246" download="eager" />
+    <jar href="lib\jna.jar" size="1100718" download="eager" />
+    <jar href="lib\jta-1.1.jar" size="10899" download="eager" />
+    <jar href="lib\junit.jar" size="253160" download="eager" />
+    <jar href="lib\log4j-1.2.17.jar" size="489883" download="eager" />
+    <jar href="lib\mchange-commons-java-0.2.3.4.jar" size="584783" download="eager" />
+    <jar href="lib\mysql-connector-java-5.1.23-bin.jar" size="834126" download="eager" />
+    <jar href="lib\oscache-2.1.jar" size="114308" download="eager" />
+    <jar href="lib\proxool-0.8.3.jar" size="475943" download="eager" />
+    <jar href="lib\slf4j-api-1.6.1.jar" size="25734" download="eager" />
+    <jar href="lib\slf4j-api-1.7.9.jar" size="32121" download="eager" />
+    <jar href="lib\slf4j-log4j12-1.7.9.jar" size="8867" download="eager" />
+    <jar href="lib\slf4j-simple-1.6.1.jar" size="7741" download="eager" />
+  </resources>
+  <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="SGPB" >
+    <param name="requiredFXVersion" value="8.0+"/>
+  </applet-desc>
+  <jfx:javafx-desc  width="800" height="600" main-class="sgpb.Main"  name="SGPB" />
+  <update check="always"/>
+</jnlp>
