@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="SGPB.jar" size="2095986" download="eager" />
+    <jar href="SGPB.jar" size="2089051" download="eager" />
     <jar href="lib\antlr-2.7.6.jar" size="443432" download="eager" />
     <jar href="lib\antlr-2.7.7.jar" size="437548" download="eager" />
     <jar href="lib\c3p0-0.9.1.jar" size="608376" download="eager" />

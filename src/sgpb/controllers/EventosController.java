@@ -218,20 +218,6 @@ public class EventosController implements Initializable {
 
     //**METODOS DO MENUBAR**
     @FXML
-    private void teste(ActionEvent event) throws IOException {
-        Stage stage = (Stage) menuBar.getScene().getWindow();
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/Teste.fxml"));
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, e);
-        }
-    }
-
-    @FXML
     private void identificacao(ActionEvent event) throws IOException {
         Stage stage = (Stage) menuBar.getScene().getWindow();
         try {
@@ -264,20 +250,6 @@ public class EventosController implements Initializable {
         Stage stage = (Stage) menuBar.getScene().getWindow();
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/fxml/Pessoas.fxml"));
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, e);
-        }
-    }
-
-    @FXML
-    private void servidores(ActionEvent event) throws IOException {
-        Stage stage = (Stage) menuBar.getScene().getWindow();
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/Servidores.fxml"));
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();

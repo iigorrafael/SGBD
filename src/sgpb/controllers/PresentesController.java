@@ -3,14 +3,11 @@ package sgpb.controllers;
 import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -36,9 +33,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
 import sgpb.dao.DAOGenerico;
-import sgpb.modelo.Atividades;
 import sgpb.modelo.AutenticadoEvento;
-import sgpb.modelo.Pessoa;
 
 public class PresentesController implements Initializable {
 
@@ -167,31 +162,7 @@ public class PresentesController implements Initializable {
         tableView.setItems(sortedData);
     }
 
-    @FXML
-    private void notificacao(String texto) {
-        Notifications notificationBuilder = Notifications.create()
-                .title("Atenção!")
-                .text(texto)
-                .graphic(null)
-                .hideAfter(Duration.seconds(3))
-                .position(Pos.TOP_RIGHT);
-        notificationBuilder.showWarning();
-    }
-
     //**METODOS DO MENUBAR**
-    @FXML
-    private void teste(ActionEvent event) throws IOException {
-        Stage stage = (Stage) menuBar.getScene().getWindow();
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/Teste.fxml"));
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, e);
-        }
-    }
 
     @FXML
     private void identificacao(ActionEvent event) throws IOException {

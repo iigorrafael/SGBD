@@ -6,6 +6,7 @@ package sgpb.modelo;
 
 import com.futronic.SDKHelper.*;
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -50,11 +51,16 @@ public class EntidadeBiometria implements Serializable {
     @OneToOne
     private Pessoa pessoa;
     
+    @Column(name = "chave_biometria", unique = true)
     private byte[] chave;
     
+    @Column(name = "template_biometria", unique = true)
     @Lob
     private byte[] template;
-
+    
+    @Column(name = "dedo_biometria", unique = true)
+    private String dedo;
+    
     public Long getId() {
         return id;
     }
@@ -107,6 +113,14 @@ public class EntidadeBiometria implements Serializable {
 
     public void setPessoa(Pessoa pessoa) {
         this.pessoa = pessoa;
+    }
+
+    public String getDedo() {
+        return dedo;
+    }
+
+    public void setDedo(String dedo) {
+        this.dedo = dedo;
     }
      
      

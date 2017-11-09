@@ -10,9 +10,9 @@
 
 <BorderPane fx:id="border" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="300.0" minWidth="300.0" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sgpb.controllers.EventosController">
    <top>
-      <MenuBar fx:id="menuBar" BorderPane.alignment="CENTER">
+      <MenuBar fx:id="menuBar" style="-fx-background-color: #607D8B;" BorderPane.alignment="CENTER">
          <menus>
-            <Menu fx:id="MenuBiometria" text="Funções">
+            <Menu fx:id="MenuBiometria" style="-fx-text-fill: white;" text="Funções">
                <items>
                   <MenuItem fx:id="ItemCadastrar" mnemonicParsing="false" onAction="#cadastrar" text="Cadastrar" />
                   <MenuItem fx:id="itemAlterar" mnemonicParsing="false" onAction="#identificacao" text="Alterar" />

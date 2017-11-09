@@ -13,7 +13,7 @@ import com.futronic.SDKHelper.IIdentificationCallBack;
 import com.futronic.SDKHelper.IVerificationCallBack;
 import com.futronic.SDKHelper.VersionCompatible;
 import com.jfoenix.controls.JFXButton;
-import java.awt.image.BufferedImage;
+import com.jfoenix.controls.JFXComboBox;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -37,7 +37,6 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.image.WritableImage;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -104,6 +103,12 @@ public class CadastrarController implements Initializable, IEnrollmentCallBack, 
     @FXML
     private Label labelNome;
 
+    @FXML
+    private Label labelDedo;
+
+    @FXML
+    private JFXComboBox<String> combo;
+
     private Evento evento;
     DAOGenerico dao = new DAOGenerico();
     List<Pessoa> listaPessoas;
@@ -112,8 +117,6 @@ public class CadastrarController implements Initializable, IEnrollmentCallBack, 
     Pessoa pessoaSelecionada;
     private FutronicSdkBase operacao;
     private Object biometria;
-    BufferedImage icon;
-    final WritableImage image = new WritableImage(210, 250);
     EntidadeBiometria entidadeBiometria;
     private Pessoa pessoa;
 
@@ -132,11 +135,6 @@ public class CadastrarController implements Initializable, IEnrollmentCallBack, 
     }
 
     @FXML
-    private void voltar(ActionEvent event) throws FutronicException {
-
-    }
-
-    @FXML
     private void notificacao(String texto) {
         Notifications notificationBuilder = Notifications.create()
                 .title("Atenção!")
@@ -147,21 +145,12 @@ public class CadastrarController implements Initializable, IEnrollmentCallBack, 
         notificationBuilder.showWarning();
     }
 
-    //**METODOS DO MENUBAR**
     @FXML
-    private void teste(ActionEvent event) throws IOException {
-        Stage stage = (Stage) menuBar.getScene().getWindow();
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/Teste.fxml"));
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, e);
-        }
+    private void comboBox() {
+
     }
 
+    //**METODOS DO MENUBAR**
     @FXML
     private void identificacao(ActionEvent event) throws IOException {
         Stage stage = (Stage) menuBar.getScene().getWindow();
@@ -172,7 +161,9 @@ public class CadastrarController implements Initializable, IEnrollmentCallBack, 
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
-            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, e);
+            Logger
+                    .getLogger(LoginController.class
+                            .getName()).log(Level.SEVERE, null, e);
         }
     }
 
@@ -186,7 +177,9 @@ public class CadastrarController implements Initializable, IEnrollmentCallBack, 
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
-            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, e);
+            Logger
+                    .getLogger(LoginController.class
+                            .getName()).log(Level.SEVERE, null, e);
         }
     }
 
@@ -200,21 +193,9 @@ public class CadastrarController implements Initializable, IEnrollmentCallBack, 
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
-            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, e);
-        }
-    }
-
-    @FXML
-    private void servidores(ActionEvent event) throws IOException {
-        Stage stage = (Stage) menuBar.getScene().getWindow();
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/Servidores.fxml"));
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, e);
+            Logger
+                    .getLogger(LoginController.class
+                            .getName()).log(Level.SEVERE, null, e);
         }
     }
 
@@ -228,7 +209,9 @@ public class CadastrarController implements Initializable, IEnrollmentCallBack, 
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
-            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, e);
+            Logger
+                    .getLogger(LoginController.class
+                            .getName()).log(Level.SEVERE, null, e);
         }
     }
 
@@ -240,8 +223,10 @@ public class CadastrarController implements Initializable, IEnrollmentCallBack, 
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
+
         } catch (IOException e) {
-            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(LoginController.class
+                    .getName()).log(Level.SEVERE, null, e);
             e.printStackTrace();
         }
 
@@ -260,7 +245,19 @@ public class CadastrarController implements Initializable, IEnrollmentCallBack, 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        combo.getItems().add("Polegar Esquerdo");
+        combo.getItems().add("Indicador Esquerdo");
+        combo.getItems().add("Médio Esquerdo");
+        combo.getItems().add("Anelar Esquerdo");
+        combo.getItems().add("Mínino Esquerdo");
+        combo.getItems().add("Polegar Direito");
+        combo.getItems().add("Indicador Direito");
+        combo.getItems().add("Médio Direito");
+        combo.getItems().add("Anelar Direito");
+        combo.getItems().add("Mínino Direito");
+        combo.setPromptText("Selecione o dedo");
+        Image img = new Image("file:///C:\\Users\\CEDI\\Desktop\\Igor\\SGPB\\src\\sgpb\\imagem\\digitalImage.jpg", 160.0, 240.0, true, true);
+        imageView.setImage(img);        
     }
 
     public void inicio() {
@@ -311,7 +308,6 @@ public class CadastrarController implements Initializable, IEnrollmentCallBack, 
      */
     @Override
     public void UpdateScreenImage(java.awt.image.BufferedImage Bitmap) {
-        icon = Bitmap;
         try {
             Image image = SwingFXUtils.toFXImage(Bitmap, null);
             Platform.runLater(() -> {
@@ -357,15 +353,17 @@ public class CadastrarController implements Initializable, IEnrollmentCallBack, 
         if (bSuccess) {
 
             dao = new DAOGenerico();
-            ArrayList<EntidadeBiometria> Users = (ArrayList<EntidadeBiometria>) dao.listar(EntidadeBiometria.class);
+            ArrayList<EntidadeBiometria> Users = (ArrayList<EntidadeBiometria>) dao.listar(EntidadeBiometria.class
+            );
 
             //**CADASTRAR NO USUARIO**//
             Platform.runLater(() -> {
                 setTextoLabel("Captura realizada com sucesso.");
                 try {
                     Thread.sleep(1500);
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(TesteController.class.getName()).log(Level.SEVERE, null, ex);
+
+                } catch (InterruptedException ex) { 
+                    Logger.getLogger(CadastrarController.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 setTextoLabel("Qualidade: " + ((FutronicEnrollment) operacao).getQuality());
             });
@@ -391,9 +389,9 @@ public class CadastrarController implements Initializable, IEnrollmentCallBack, 
                 setTextoLabel("Houve um erro no cadastro!");
                 try {
                     Thread.sleep(1500);
+
                 } catch (InterruptedException ex) {
-                    Logger.getLogger(TesteController.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                    Logger.getLogger(CadastrarController.class.getName()).log(Level.SEVERE, null, ex);                }
                 setTextoLabel("Erro: " + FutronicSdkBase.SdkRetCode2Message(nResult));
             });
 
@@ -426,8 +424,9 @@ public class CadastrarController implements Initializable, IEnrollmentCallBack, 
                     setTextoLabel("Verificação completada!");
                     try {
                         Thread.sleep(1500);
+
                     } catch (InterruptedException ex) {
-                        Logger.getLogger(TesteController.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(CadastrarController.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     setTextoLabel("Nome: " + pessoa.getNome());
                 });
@@ -442,8 +441,9 @@ public class CadastrarController implements Initializable, IEnrollmentCallBack, 
                 setTextoLabel("Processo de verificação falhou!");
                 try {
                     Thread.sleep(1500);
+
                 } catch (InterruptedException ex) {
-                    Logger.getLogger(TesteController.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(CadastrarController.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 setTextoLabel("Erro: " + (FutronicSdkBase.SdkRetCode2Message(nResult)));
             });
@@ -484,8 +484,9 @@ public class CadastrarController implements Initializable, IEnrollmentCallBack, 
                     setTextoLabel("Identificação completada! Nome: ");
                     try {
                         Thread.sleep(1500);
+
                     } catch (InterruptedException ex) {
-                        Logger.getLogger(TesteController.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(CadastrarController.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 });
 
@@ -520,7 +521,8 @@ public class CadastrarController implements Initializable, IEnrollmentCallBack, 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     public void btnIdentifyActionPerformed() {
         DAOGenerico dao = new DAOGenerico();
-        ArrayList<EntidadeBiometria> Users = (ArrayList<EntidadeBiometria>) dao.listar(EntidadeBiometria.class);
+        ArrayList<EntidadeBiometria> Users = (ArrayList<EntidadeBiometria>) dao.listar(EntidadeBiometria.class
+        );
 
         if (Users.isEmpty()) {
             Platform.runLater(() -> {
@@ -555,8 +557,9 @@ public class CadastrarController implements Initializable, IEnrollmentCallBack, 
                 setTextoLabel("Não é possível iniciar a operação de inscrição.");
                 try {
                     Thread.sleep(1500);
+
                 } catch (InterruptedException ex) {
-                    Logger.getLogger(TesteController.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(CadastrarController.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 setTextoLabel(e.getMessage());
             });

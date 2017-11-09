@@ -16,7 +16,7 @@
             <Image url="@../sgpb/imagem/fundo.png" />
          </image>
       </ImageView>
-      <AnchorPane layoutX="178.0" layoutY="106.0" prefHeight="390.0" prefWidth="395.0" style="-fx-background-color: #FFFFFF;">
+      <AnchorPane fx:id="anchor" layoutX="178.0" layoutY="106.0" prefHeight="390.0" prefWidth="395.0" style="-fx-background-color: #FFFFFF;">
          <children>
             <JFXTextField fx:id="login" cache="true" labelFloat="true" layoutX="63.0" layoutY="130.0" prefHeight="25.0" prefWidth="270.0" promptText="Login" unFocusColor="#9a9999">
                <font>
@@ -36,6 +36,7 @@
                <font>
                   <Font size="14.0" />
                </font></JFXButton>
+
          </children>
          <effect>
             <DropShadow blurType="GAUSSIAN" />

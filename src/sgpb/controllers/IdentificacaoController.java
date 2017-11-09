@@ -2,6 +2,9 @@ package sgpb.controllers;
 
 import com.futronic.SDKHelper.*;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDialog;
+import com.jfoenix.controls.JFXDialogLayout;
+import com.jfoenix.controls.JFXPasswordField;
 import java.io.IOException;
 import java.net.URL;
 import java.text.ParseException;
@@ -29,8 +32,11 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
@@ -73,9 +79,6 @@ public class IdentificacaoController implements Initializable, IEnrollmentCallBa
     private BorderPane border;
 
     @FXML
-    private AnchorPane anchorPane;
-
-    @FXML
     private ImageView imageView;
 
     @FXML
@@ -91,10 +94,15 @@ public class IdentificacaoController implements Initializable, IEnrollmentCallBa
     private JFXButton btnShowPresentes;
 
     @FXML
+    private AnchorPane anchorPane;
+
+    @FXML
     private Label labelEvento;
 
     @FXML
     private Label labelNome;
+
+    private StackPane lockPane;
 
     private boolean cancelar;
     private Atividades evento;
@@ -117,10 +125,43 @@ public class IdentificacaoController implements Initializable, IEnrollmentCallBa
         if (evento == null) {
             setLabelInstrucoes("Nenhum evento selecionado! Por favor, selecione um evento.");
         } else {
+            lockPane = new StackPane();
+            lockPane.setPrefHeight(600.0);
+            lockPane.setPrefWidth(906.0);
+            lockPane.setLayoutX(-6.0);
+            lockPane.setLayoutY(-29.0);
             cancelar = false;
             dao = new DAOGenerico();
             users = (ArrayList<EntidadeBiometria>) dao.listar(EntidadeBiometria.class);
             btnIdentifyActionPerformed();
+            anchorPane.getChildren().add(lockPane);
+            lockPane.setOnMouseClicked((MouseEvent event1) -> {
+                JFXDialogLayout content = new JFXDialogLayout();
+                content.setHeading(new Text("Autenticação Requerida!"));
+                JFXPasswordField senha = new JFXPasswordField();
+                content.setBody(senha);
+                JFXButton btnCancelar1 = new JFXButton("Cancelar");
+                JFXButton btnOk = new JFXButton("OK");
+                JFXDialog dialog = new JFXDialog(lockPane, content, JFXDialog.DialogTransition.CENTER);
+                btnOk.setDefaultButton(true);
+                btnOk.setOnAction((ActionEvent event2) -> {
+                    if (senha.getText().equals("123")) {
+                        anchorPane.getChildren().remove(lockPane);
+                        dialog.close();
+
+                    } else {
+                        System.out.println("Senha Login/Senha errada");
+                        notificacaoErro("ERRO", "Senha Incorreta");
+                    }
+                });
+                btnCancelar1.setCancelButton(true);
+                btnCancelar1.setOnAction((ActionEvent event3) -> {
+                    dialog.close();
+                });
+                content.setActions(btnCancelar1, btnOk);
+                dialog.show();
+            });
+
         }
 
     }
@@ -144,11 +185,13 @@ public class IdentificacaoController implements Initializable, IEnrollmentCallBa
             e.printStackTrace();
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, e);
         }
+
     }
 
     //**Metodos Notificações push**
     @FXML
-    private void notificacaoSucesso(String titulo, String texto) {
+    private void notificacaoSucesso(String titulo, String texto
+    ) {
         Notifications notificationBuilder = Notifications.create()
                 .title(titulo)
                 .text(texto)
@@ -156,10 +199,12 @@ public class IdentificacaoController implements Initializable, IEnrollmentCallBa
                 .hideAfter(Duration.seconds(4))
                 .position(Pos.TOP_RIGHT);
         notificationBuilder.showConfirm();
+
     }
 
     @FXML
-    private void notificacaoErro(String titulo, String texto) {
+    private void notificacaoErro(String titulo, String texto
+    ) {
         Notifications notificationBuilder = Notifications.create()
                 .title(titulo)
                 .text(texto)
@@ -168,23 +213,8 @@ public class IdentificacaoController implements Initializable, IEnrollmentCallBa
                 .position(Pos.TOP_RIGHT);
         notificationBuilder.showError();
     }
-
+   
     //**METODOS DO MENUBAR**
-    @FXML
-    private void teste(ActionEvent event) throws IOException {
-        btnStopActionPerformed();
-        Stage stage = (Stage) menuBar.getScene().getWindow();
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/Teste.fxml"));
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, e);
-        }
-    }
-
     @FXML
     private void identificacao(ActionEvent event) throws IOException {
         btnStopActionPerformed();
@@ -221,21 +251,6 @@ public class IdentificacaoController implements Initializable, IEnrollmentCallBa
         Stage stage = (Stage) menuBar.getScene().getWindow();
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/fxml/Pessoas.fxml"));
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, e);
-        }
-    }
-
-    @FXML
-    private void servidores(ActionEvent event) throws IOException {
-        btnStopActionPerformed();
-        Stage stage = (Stage) menuBar.getScene().getWindow();
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/Servidores.fxml"));
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
@@ -287,6 +302,7 @@ public class IdentificacaoController implements Initializable, IEnrollmentCallBa
         }
     }
 
+    //** METODOS DO SDK DO LEITOR DE DIGITAL**
     public void inicio() {
 
         // **SETANDO OS PARAMETROS**
@@ -336,11 +352,15 @@ public class IdentificacaoController implements Initializable, IEnrollmentCallBa
      * DIGITAL
      *
      **
-     * @param Bitmap the instance of Bitmap class with fingerprint image.
+     * @param Bitmap the instance of Bitmap class with fingerprint image. Bitmap
+     * é a instancia do classe com a impressão digital
      */
     @Override
     public void UpdateScreenImage(java.awt.image.BufferedImage Bitmap) {
         try {
+//String format = "PNG";
+//ImageIO.write(Bitmap, format, new File("C:\\Users\\CEDI\\Desktop\\Igor\\SGPB\\src\\BIOIMAGE.png"));
+
             Image image = SwingFXUtils.toFXImage(Bitmap, null);
             Platform.runLater(() -> {
                 imageView.setImage(image);
@@ -391,7 +411,7 @@ public class IdentificacaoController implements Initializable, IEnrollmentCallBa
                 try {
                     Thread.sleep(1500);
                 } catch (InterruptedException ex) {
-                    Logger.getLogger(TesteController.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(IdentificacaoController.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 System.out.println("Qualidade: " + ((FutronicEnrollment) operacao).getQuality());
             });
@@ -418,7 +438,7 @@ public class IdentificacaoController implements Initializable, IEnrollmentCallBa
                 try {
                     Thread.sleep(1500);
                 } catch (InterruptedException ex) {
-                    Logger.getLogger(TesteController.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(IdentificacaoController.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 System.out.println("Erro: " + FutronicSdkBase.SdkRetCode2Message(nResult));
             });
@@ -452,7 +472,7 @@ public class IdentificacaoController implements Initializable, IEnrollmentCallBa
                     try {
                         Thread.sleep(1500);
                     } catch (InterruptedException ex) {
-                        Logger.getLogger(TesteController.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(IdentificacaoController.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     System.out.println("Nome: " + pessoa.getNome());
                 });
@@ -468,7 +488,7 @@ public class IdentificacaoController implements Initializable, IEnrollmentCallBa
                 try {
                     Thread.sleep(1500);
                 } catch (InterruptedException ex) {
-                    Logger.getLogger(TesteController.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(IdentificacaoController.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 System.out.println("Erro: " + (FutronicSdkBase.SdkRetCode2Message(nResult)));
             });
@@ -541,7 +561,7 @@ public class IdentificacaoController implements Initializable, IEnrollmentCallBa
                                 //chamar notificação de sucesso
                                 notificacaoSucesso("Presença confirmada!", users.get(result.m_Index).getPessoa().getNome());
                             } catch (InterruptedException ex) {
-                                Logger.getLogger(TesteController.class.getName()).log(Level.SEVERE, null, ex);
+                                Logger.getLogger(IdentificacaoController.class.getName()).log(Level.SEVERE, null, ex);
                             }
                         });
                     } else {
@@ -562,20 +582,26 @@ public class IdentificacaoController implements Initializable, IEnrollmentCallBa
                 Platform.runLater(() -> {
                     setLabelInstrucoes("Horário não permitido!");
                     notificacaoErro("ERRO!", "HORÁRIO NÃO PERMITIDO!");
+//                    btnIdentifyActionPerformed();
                 });
-                btnIdentifyActionPerformed();
 
             }
 
         } else {
-            String erro = ("Erro: " + FutronicSdkBase.SdkRetCode2Message(nResult));
+            String erro;
+            if (cancelar == true) {
+                erro = ("Operação cancelada pelo Usuário");
+            } else {
+                erro = ("Erro: " + FutronicSdkBase.SdkRetCode2Message(nResult));
+            }
+
             Platform.runLater(() -> {
                 setLabelInstrucoes("Não é possível recuperar modelo base.");
                 try {
                     Thread.sleep(1000);
                     setLabelInstrucoes(erro);
                 } catch (InterruptedException ex) {
-                    Logger.getLogger(TesteController.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(IdentificacaoController.class.getName()).log(Level.SEVERE, null, ex);
                 }
             });
         }
@@ -638,7 +664,7 @@ public class IdentificacaoController implements Initializable, IEnrollmentCallBa
                 try {
                     Thread.sleep(1500);
                 } catch (InterruptedException ex) {
-                    Logger.getLogger(TesteController.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(IdentificacaoController.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 setLabelInstrucoes(e.getMessage());
             });
@@ -690,7 +716,8 @@ public class IdentificacaoController implements Initializable, IEnrollmentCallBa
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        Image img = new Image("file:///C:\\Users\\CEDI\\Desktop\\Igor\\SGPB\\src\\sgpb\\imagem\\digitalImage.jpg", 160.0, 240.0, true, true);
+        imageView.setImage(img);
     }
 
     public void setLabelInstrucoes(String texto) {
